@@ -1,4 +1,5 @@
 const readlineSync = require('readline-sync')
+const chalk = require('chalk')
 const { equal } = require('./tools')
 const { word } = require('./word')
 let { wordHide } = require('./word')
@@ -6,7 +7,7 @@ const { hangman } = require('./hangman')
 
 // Start of the game
 let isRunning = true
-console.log(wordHide.join(''))
+console.log(chalk.blue(wordHide.join('')))
 let hg = 0
 
 // Game loop
@@ -29,18 +30,18 @@ while (isRunning) {
   }
   if (equal(wordHide, newWordHide)) {
     hg++
-    console.log(hangman[hg])
+    console.log(chalk.white(hangman[hg]))
     if (hg === hangman.length - 1) {
       isRunning = false
-      console.log("You loose")
+      console.log(chalk.red("You loose"))
     }
   } else {
     wordHide = newWordHide
-    console.log(wordHide.join(''))
+    console.log(chalk.blue(wordHide.join('')))
   }
 
   if (equal(word, wordHide)) {
     isRunning = false
-    console.log('You win !')
+    console.log(chalk.red('You win !'))
   }
 }
