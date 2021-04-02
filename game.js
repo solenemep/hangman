@@ -2,10 +2,12 @@ const readlineSync = require('readline-sync')
 const { equal } = require('./tools')
 const { word } = require('./word')
 let { wordHide } = require('./word')
+const { hangman } = require('./hangman')
 
 // Start of the game
 let isRunning = true
 console.log(wordHide.join(''))
+let hg = 0
 
 // Game loop
 while (isRunning) {
@@ -25,12 +27,20 @@ while (isRunning) {
       newWordHide.push(' _ ')
     }
   }
-  wordHide = newWordHide
-  console.log(wordHide.join(''))
+  if (equal(wordHide, newWordHide)) {
+    hg++
+    console.log(hangman[hg])
+    if (hg === hangman.length - 1) {
+      isRunning = false
+      console.log("You loose")
+    }
+  } else {
+    wordHide = newWordHide
+    console.log(wordHide.join(''))
+  }
 
   if (equal(word, wordHide)) {
     isRunning = false
     console.log('You win !')
   }
-
 }
