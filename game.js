@@ -7,8 +7,8 @@ const { hangman } = require('./hangman')
 
 // Start of the game
 let isRunning = true
-console.log(chalk.blue(wordHide.join('')))
 let hg = 0
+console.log(chalk.blue(wordHide.join('')))
 
 // Game loop
 while (isRunning) {
@@ -31,6 +31,7 @@ while (isRunning) {
   if (equal(wordHide, newWordHide)) {
     hg++
     console.log(chalk.white(hangman[hg]))
+    console.log(chalk.blue(wordHide.join('')))
     if (hg === hangman.length - 1) {
       isRunning = false
       console.log(chalk.red("You loose"))
