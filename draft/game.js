@@ -3,6 +3,7 @@ const chalk = require('chalk')
 const { equal } = require('./tools')
 let { wordFind } = require('./word')
 const { hangman } = require('./hangman')
+const { hangtitle } = require('./hangman')
 
 
 game = () => {
@@ -11,6 +12,10 @@ game = () => {
   let hg = 0
   let tried = []
   let [word, wordHide] = wordFind()
+  console.clear()
+  console.log(hangtitle)
+  console.log(chalk.white(hangman[0]))
+  console.log(`You already tried ${tried}`)
   console.log(chalk.blue(wordHide.join('')))
 
   // Game loop
@@ -33,25 +38,28 @@ game = () => {
         newWordHide.push(' _ ')
       }
     }
+
+    console.clear()
+    console.log(hangtitle)
+
     if (equal(wordHide, newWordHide)) {
       hg++
-      console.log(chalk.white(hangman[hg]))
-      console.log(`You already tried ${tried}`)
-      console.log(chalk.blue(wordHide.join('')))
       if (hg === hangman.length - 1) {
         isRunning = false
         console.log(chalk.red(`You loose, the word was ${word.join('')}`))
       }
     } else {
       wordHide = newWordHide
-      console.log(`You already tried ${tried}`)
-      console.log(chalk.blue(wordHide.join('')))
     }
 
     if (equal(word, wordHide)) {
       isRunning = false
       console.log(chalk.red('You win !'))
     }
+
+    console.log(chalk.white(hangman[hg]))
+    console.log(`You already tried ${tried}`)
+    console.log(chalk.blue(wordHide.join('')))
   }
 }
 exports.game = game
