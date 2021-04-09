@@ -2,9 +2,7 @@ const readlineSync = require('readline-sync')
 const chalk = require('chalk')
 const { equal } = require('./tools')
 let { wordFind } = require('./word')
-const { hangman } = require('./hangman')
-const { hangtitle } = require('./hangman')
-
+const { hangman, hangtitle } = require('./hangman')
 
 game = () => {
   // Start of the game
@@ -14,7 +12,7 @@ game = () => {
   let [word, wordHide] = wordFind()
   console.clear()
   console.log(hangtitle)
-  console.log(chalk.white(hangman[0]))
+  console.log(chalk.white(hangman[hg]))
   console.log(`You already tried ${tried}`)
   console.log(chalk.blue(wordHide.join('')))
 

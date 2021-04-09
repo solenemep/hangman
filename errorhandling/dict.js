@@ -16,7 +16,7 @@ class DictError extends Error {
 
 const dictRead = () => {
   try {
-    const dictContentTab = fs.readFileSync('./errorhandling/dict.txt', 'utf-8').split(/\n/g)
+    const dictContentTab = fs.readFileSync('/users/solenepettier/desktop/hangman/errorhandling/dict.txt', 'utf-8').split(/\n/g)
     let dictContent = []
     for (i = 0; i < dictContentTab.length; i++) {
       let dictItemTab = dictContentTab[i].split(' ')
@@ -27,5 +27,7 @@ const dictRead = () => {
     throw new DictError(e.message, DICT_FILE_ERROR)
   }
 }
+
+// console.log(dictRead())
 
 exports.dictRead = dictRead
